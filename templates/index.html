@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HERMES — AI Documentation Intelligence Platform</title>
+  <link rel="stylesheet" href="/static/css/hermes.css">
+</head>
+<body>
+
+  <!-- =====================================================================
+       1. PUBLIC EDITORIAL WEBSITE
+       ===================================================================== -->
+  <div id="public-view">
+    <!-- Minimal Institutional Navigation -->
+    <nav class="public-nav">
+      <div class="brand-wordmark">
+        <span class="brand-dot"></span>
+        HERMES
+      </div>
+      <ul class="public-links">
+        <li><a href="#platform">Platform</a></li>
+        <li><a href="#technology">Technology</a></li>
+        <li><a href="#pipeline">Pipeline</a></li>
+        <li><a href="#trust">Trust & Security</a></li>
+        <li><a href="#company">Company</a></li>
+      </ul>
+      <div class="public-actions">
+        <button class="btn btn-secondary btn-sm" id="theme-toggle-btn">🌙 Dark</button>
+        <button class="btn btn-secondary btn-sm" data-view-target="workspace">Sign in</button>
+        <button class="btn btn-primary btn-sm" data-view-target="workspace">Open Workspace</button>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section public-container">
+      <div class="hero-eyebrow">AI Documentation Intelligence</div>
+      <h1 class="hero-title">Technical documentation that evolves with source code.</h1>
+      <p class="hero-subtitle">
+        HERMES synchronizes API specifications with codebase changes, verifies that code examples execute cleanly in isolated environments, and stages reviewable GitHub pull requests.
+      </p>
+      <div class="hero-ctas">
+        <button class="btn btn-primary" data-view-target="workspace">
+          Open Workspace &rarr;
+        </button>
+        <button class="btn btn-secondary" onclick="document.getElementById('demo-preview').scrollIntoView({behavior: 'smooth'})">
+          Inspect Architecture
+        </button>
+      </div>
+
+      <!-- Live Interactive Product Preview -->
+      <div class="preview-window" id="demo-preview">
+        <div class="preview-header">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span class="brand-dot"></span>
+            <strong>HERMES Synchronizer</strong>
+            <span style="color: var(--text-faint);">• sample_files/data_pipeline.py</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span class="badge badge-pass">Verified Example (18.4ms)</span>
+            <span class="badge badge-neutral">AST Grounded</span>
+          </div>
+        </div>
+        <div class="preview-grid">
+          <div class="preview-pane">
+            <div class="preview-label">Source Code (AST Parsed)</div>
+            <pre style="font-family: var(--font-mono); font-size: 11px; line-height: 1.45; color: var(--text-graphite);"><code>class StreamPipeline:
+    def __init__(self, name: str, batch_size: int = 100):
+        self.name = name
+        self.batch_size = max(1, batch_size)
+        self.validator = RecordValidator()
+        self.processed_count = 0
+
+    def process_record(self, record: Dict[str, Any]) -> Dict[str, Any]:
+        """Sanitize and enrich incoming record."""
+        if not self.validator.validate(record):
+            raise ValueError(f"Invalid record: {record}")
+        ...</code></pre>
+          </div>
+          <div class="preview-pane">
+            <div class="preview-label">Generated & Verified Documentation</div>
+            <div style="font-size: 12px; line-height: 1.5;">
+              <h3 style="font-size: 14px; font-weight: 600; margin-bottom: 6px;">StreamPipeline Specification</h3>
+              <p style="color: var(--text-muted); margin-bottom: 10px;">
+                Coordinates batch ingestion and validation. Raises <code>ValueError</code> on schema mismatch.
+              </p>
+              <div style="background: var(--bg-surface); border: 1px solid var(--border-light); padding: 8px 10px; border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 11px; margin-bottom: 8px;">
+                pipeline = StreamPipeline("analytics")<br>
+                res = pipeline.process_record({"id": "1", "timestamp": 123, "payload": {}})<br>
+                assert res["status"] == "VERIFIED"
+              </div>
+              <div style="display: flex; gap: 6px; font-size: 11px; color: var(--status-pass);">
+                <span>&check; Execution Sandbox: Passed</span>
+                <span style="color: var(--text-faint);">• Diff staged to PR #104</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pipeline Stages Section -->
+    <section class="pipeline-section public-container" id="pipeline">
+      <div class="section-head">
+        <h2>Continuous Documentation Automation</h2>
+        <p>A deterministic, verifiable 4-stage pipeline that bridges the documentation-debt divide.</p>
+      </div>
+      <div class="pipeline-flow">
+        <div class="pipeline-card">
+          <div class="pipeline-step-num">STAGE 01</div>
+          <h3>AST & Change Detection</h3>
+          <p>Parses syntax trees to extract classes, functions, type hints, and parameter signatures while tracking revisions.</p>
+        </div>
+        <div class="pipeline-card">
+          <div class="pipeline-step-num">STAGE 02</div>
+          <h3>Source-Grounded Docs</h3>
+          <p>Generates technical references citing exact source files and line ranges, avoiding ungrounded speculative claims.</p>
+        </div>
+        <div class="pipeline-card">
+          <div class="pipeline-step-num">STAGE 03</div>
+          <h3>Isolated Code Verification</h3>
+          <p>Extracts runnable snippets into sandboxed subprocesses with strict timeouts. Fails trigger bounded correction loops.</p>
+        </div>
+        <div class="pipeline-card">
+          <div class="pipeline-step-num">STAGE 04</div>
+          <h3>Reviewable PR Staging</h3>
+          <p>Prepares unified diffs and stages GitHub pull requests with structured checklists for human review.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Capabilities -->
+    <section class="public-container" id="platform">
+      <div class="section-head">
+        <h2>Core Capabilities</h2>
+        <p>Built for engineering teams that value precision, reproducibility, and safety.</p>
+      </div>
+      <div class="capabilities-grid">
+        <div class="cap-card">
+          <h3>Change-Aware Synchronization</h3>
+          <p>Documentation updates are triggered directly by AST structural diffs rather than relying entirely on manual discipline.</p>
+        </div>
+        <div class="cap-card">
+          <h3>Executable Code Verification</h3>
+          <p>All supported code examples run in an isolated environment. Broken examples never silently slip into published docs.</p>
+        </div>
+        <div class="cap-card">
+          <h3>Bounded Self-Correction</h3>
+          <p>When snippet execution fails, the traceback feeds into a bounded repair loop that re-verifies candidates before staging.</p>
+        </div>
+        <div class="cap-card">
+          <h3>Source-Grounded Explanations</h3>
+          <p>Claims reference explicit source files, line ranges, and AST nodes. Never hallucinates files outside repository scope.</p>
+        </div>
+        <div class="cap-card">
+          <h3>Reviewable Git Proposals</h3>
+          <p>Prepares transparent unified diffs and commits to dedicated documentation branches ready for peer review.</p>
+        </div>
+        <div class="cap-card">
+          <h3>Flexible Hybrid AI Engine</h3>
+          <p>Operates either with LLM providers (Gemini/OpenAI) or completely offline with deterministic AST generation.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust and Transparency -->
+    <section class="public-container" id="trust">
+      <div class="trust-section">
+        <div class="section-head" style="margin-bottom: 32px; text-align: left;">
+          <h2 style="font-size: 22px;">Trust & Operational Boundaries</h2>
+          <p style="margin: 0;">We do not promise zero drift or guaranteed perfection. We provide verifiable checks and transparent audit trails.</p>
+        </div>
+        <div class="trust-grid">
+          <div class="trust-item">
+            <h4>No Arbitrary Code Execution on Host</h4>
+            <p>Snippets run in bounded subprocesses with timeouts, restricted directory paths, and isolated process groups.</p>
+          </div>
+          <div class="trust-item">
+            <h4>Human-in-the-Loop Review</h4>
+            <p>Every automated sync creates a staged proposal or pull request. No documentation is silently pushed to production unreviewed.</p>
+          </div>
+          <div class="trust-item">
+            <h4>Fact vs. Suggestion Distinction</h4>
+            <p>The AI Assistant distinguishes verified AST facts from AI recommendations and clearly admits unindexed repository files.</p>
+          </div>
+          <div class="trust-item">
+            <h4>Persistent Audit Records</h4>
+            <p>Every verification run, execution duration, stdout capture, and correction attempt is stored persistently in SQLite.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing Call to Action -->
+    <section class="public-container" style="text-align: center; padding: 40px 0 80px;" id="company">
+      <h2 style="font-size: 28px; font-weight: 600; margin-bottom: 12px;">Explore the HERMES Workspace</h2>
+      <p style="color: var(--text-muted); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto;">
+        Inspect real AST structures, test executable snippets, and experience automated documentation intelligence.
+      </p>
+      <button class="btn btn-primary" data-view-target="workspace">
+        Launch Authenticated Workspace &rarr;
+      </button>
+    </section>
+
+    <footer class="public-footer">
+      <div class="public-container">
+        &copy; 2026 HERMES Documentation Intelligence Platform. Restrained, institutional engineering software.
+      </div>
+    </footer>
+  </div>
+
+  <!-- =====================================================================
+       2. AUTHENTICATED WORKING ENVIRONMENT (WORKSPACE)
+       ===================================================================== -->
+  <div id="workspace-view" class="workspace-shell" style="display: none;">
+    <!-- Top Bar -->
+    <header class="workspace-topbar">
+      <div class="topbar-left">
+        <div class="brand-wordmark" style="cursor: pointer;" data-view-target="public">
+          <span class="brand-dot"></span>
+          HERMES
+        </div>
+        <div class="workspace-badge">
+          <span>Repository:</span>
+          <strong>data-pipeline-core</strong>
+          <span class="branch-tag">main</span>
+        </div>
+      </div>
+
+      <div class="topbar-center">
+        <span class="search-icon">&param;</span>
+        <input type="text" id="global-search" class="global-search" placeholder="Search documents, symbols, or verification runs...">
+      </div>
+
+      <div class="topbar-right">
+        <div class="live-indicator">
+          <span class="pulse-dot"></span>
+          <span>Engine Active</span>
+        </div>
+        <button class="btn btn-secondary btn-sm" id="theme-toggle-btn-ws" onclick="document.getElementById('theme-toggle-btn').click();">
+          Toggle Theme
+        </button>
+        <button class="btn btn-secondary btn-sm" data-view-target="public">
+          Exit to Website
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace Body -->
+    <div class="workspace-body">
+      <!-- Sidebar Navigation -->
+      <aside class="workspace-sidebar">
+        <nav class="sidebar-nav">
+          <div class="nav-item active" data-tab="overview">
+            <div class="nav-item-content">
+              <span>&#9638;</span>
+              <span>Overview</span>
+            </div>
+          </div>
+          <div class="nav-item" data-tab="docs">
+            <div class="nav-item-content">
+              <span>&#9776;</span>
+              <span>Documentation</span>
+            </div>
+            <span class="nav-count" id="count-docs">2</span>
+          </div>
+          <div class="nav-item" data-tab="analysis">
+            <div class="nav-item-content">
+              <span>&lt;/&gt;</span>
+              <span>Code Analysis</span>
+            </div>
+          </div>
+          <div class="nav-item" data-tab="assistant">
+            <div class="nav-item-content">
+              <span>&#9874;</span>
+              <span>AI Assistant</span>
+            </div>
+          </div>
+          <div class="nav-item" data-tab="tests">
+            <div class="nav-item-content">
+              <span>&check;</span>
+              <span>Tests & Verification</span>
+            </div>
+            <span class="nav-count" id="count-tests">3</span>
+          </div>
+          <div class="nav-item" data-tab="github">
+            <div class="nav-item-content">
+              <span>&#10065;</span>
+              <span>GitHub & PRs</span>
+            </div>
+            <span class="nav-count" id="count-prs">1</span>
+          </div>
+          <div class="nav-item" data-tab="activity">
+            <div class="nav-item-content">
+              <span>&#9201;</span>
+              <span>Activity</span>
+            </div>
+          </div>
+          <div class="nav-item" data-tab="settings">
+            <div class="nav-item-content">
+              <span>&#9881;</span>
+              <span>Settings</span>
+            </div>
+          </div>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div>HERMES Core v1.4.0</div>
+          <div>Sandbox: Isolated Subprocess</div>
+          <div>SQLite: Connected</div>
+        </div>
+      </aside>
+
+      <!-- Workspace Panels Area -->
+      <main class="workspace-content">
+
+        <!-- Panel 1: Overview -->
+        <div id="panel-overview" class="workspace-panel">
+          <div class="content-header">
+            <div>
+              <h1>Workspace Overview</h1>
+              <div class="content-subtitle">Real-time status of documentation synchronization, test verification, and pull requests.</div>
+            </div>
+            <button class="btn btn-primary" onclick="triggerPipelineRun()">
+              &#9654; Run 12-Stage Pipeline
+            </button>
+          </div>
+
+          <div class="metrics-row">
+            <div class="metric-card">
+              <span class="metric-label">Synced Documents</span>
+              <span class="metric-value" id="metric-synced-docs">2</span>
+              <span class="metric-sub">Up to date with AST</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-label">Drift Detected</span>
+              <span class="metric-value" id="metric-drift-detected">0</span>
+              <span class="metric-sub">Requires update</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-label">Verification Rate</span>
+              <span class="metric-value" id="metric-pass-rate">100%</span>
+              <span class="metric-sub">Executable snippets</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-label">Correction Loops</span>
+              <span class="metric-value" id="metric-corrections">1</span>
+              <span class="metric-sub">Auto-repaired snippets</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-label">Staged PRs</span>
+              <span class="metric-value" id="metric-staged-prs">1</span>
+              <span class="metric-sub">Ready for review</span>
+            </div>
+          </div>
+
+          <div class="overview-grid">
+            <div class="card">
+              <div class="card-title">
+                <span>Recent Activity Audit Trail</span>
+                <button class="btn btn-secondary btn-sm" onclick="switchTab('activity')">View All</button>
+              </div>
+              <div id="overview-activity-list">
+                <!-- Injected via app.js -->
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-title">
+                <span>Quick Pipeline Actions</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <button class="btn btn-secondary" style="justify-content: flex-start;" onclick="switchTab('analysis')">
+                  &lt;/&gt; Inspect Source AST & Debt
+                </button>
+                <button class="btn btn-secondary" style="justify-content: flex-start;" onclick="switchTab('docs')">
+                  &#9776; Browse Generated Specs
+                </button>
+                <button class="btn btn-secondary" style="justify-content: flex-start;" onclick="switchTab('tests')">
+                  &check; Run Snippet Verifier
+                </button>
+                <button class="btn btn-secondary" style="justify-content: flex-start;" onclick="switchTab('assistant')">
+                  &#9874; Ask Grounded Assistant
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 2: Documentation Workspace -->
+        <div id="panel-docs" class="workspace-panel" style="display: none;">
+          <div class="content-header">
+            <div>
+              <h1>Documentation Workspace</h1>
+              <div class="content-subtitle">Source-grounded specifications with version history and executable examples.</div>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn btn-secondary" onclick="runDocumentSnippetVerification()">
+                &check; Verify Snippets
+              </button>
+            </div>
+          </div>
+
+          <div class="doc-workspace-layout">
+            <div class="doc-catalog">
+              <div class="catalog-search-box">
+                <input type="text" id="doc-search-input" placeholder="Filter documents...">
+              </div>
+              <ul class="catalog-list" id="doc-catalog-list">
+                <!-- Catalog injected via JS -->
+              </ul>
+            </div>
+
+            <div class="doc-viewer">
+              <div class="viewer-header">
+                <div>
+                  <h3 id="doc-title-display" style="font-size: 14px; font-weight: 600;">Document Title</h3>
+                  <div id="doc-meta-display" style="font-size: 11px; color: var(--text-faint);">File and version</div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <span style="font-size: 11px; color: var(--text-muted);">Version:</span>
+                  <select id="doc-version-select" style="padding: 3px 6px; font-size: 11px;">
+                    <!-- Injected via JS -->
+                  </select>
+                </div>
+              </div>
+              <div class="viewer-body">
+                <div class="markdown-rendered" id="doc-content-rendered">
+                  <!-- Rendered markdown injected via JS -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 3: Code Analysis & AST Inspector -->
+        <div id="panel-analysis" class="workspace-panel" style="display: none;">
+          <div class="content-header">
+            <div>
+              <h1>Code Analysis & AST Inspector</h1>
+              <div class="content-subtitle">Parse Python source files, detect symbols, track documentation debt, and trigger updates.</div>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn btn-secondary" onclick="runAstAnalysis()">
+                Analyze AST
+              </button>
+              <button class="btn btn-primary" onclick="triggerPipelineRun()">
+                &#9654; Run 12-Stage Pipeline
+              </button>
+            </div>
+          </div>
+
+          <div class="code-analysis-grid">
+            <div class="code-editor-pane">
+              <div class="code-editor-header">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span>Sample File:</span>
+                  <select id="sample-file-select" style="padding: 2px 6px; font-size: 11px;">
+                    <!-- Samples injected via JS -->
+                  </select>
+                </div>
+                <span style="font-size: 11px; color: var(--text-faint);">Python 3.14 AST</span>
+              </div>
+              <textarea id="source-code-editor" class="code-textarea" spellcheck="false"></textarea>
+            </div>
+
+            <div class="ast-results-pane">
+              <div class="code-editor-header">
+                <strong>Structural Profile & Documentation Debt</strong>
+                <span class="badge badge-neutral">AST Verified</span>
+              </div>
+              <div class="ast-results-body" id="ast-results-container">
+                <!-- AST results injected via JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 4: AI Grounded Assistant -->
+        <div id="panel-assistant" class="workspace-panel" style="display: none;">
+          <div class="content-header">
+            <div>
+              <h1>Project Intelligence Assistant</h1>
+              <div class="content-subtitle">Grounded in repository files and documentation. Clearly separates facts from suggestions.</div>
+            </div>
+          </div>
+
+          <div class="assistant-layout">
+            <div class="assistant-chat-history" id="assistant-chat-history">
+              <div class="chat-bubble chat-bubble-hermes">
+                <div class="chat-meta">
+                  <span class="brand-dot"></span>
+                  <strong>HERMES Assistant</strong>
+                  <span class="source-pill">Grounded Knowledge Base</span>
+                </div>
+                <div class="markdown-rendered">
+                  <p>Welcome to HERMES Project Intelligence. I answer questions directly using AST structural analysis and verified documentation.</p>
+                  <p><strong>Operational principles:</strong></p>
+                  <ul>
+                    <li>Claims cite verified source files and line ranges.</li>
+                    <li>Verified facts are distinguished from speculative recommendations.</li>
+                    <li>If a file has not been processed in this workspace, I will state so transparently.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="prompt-suggestions">
+              <button class="suggestion-chip" data-query="Explain StreamPipeline class architecture and error handling">
+                StreamPipeline architecture
+              </button>
+              <button class="suggestion-chip" data-query="Check TokenManager cryptographic guarantees and revocation">
+                TokenManager security
+              </button>
+              <button class="suggestion-chip" data-query="How does isolated code snippet verification and correction work?">
+                Snippet verification
+              </button>
+              <button class="suggestion-chip" data-query="What documentation debt exists in cache_client.py?">
+                Cache client debt
+              </button>
+            </div>
+
+            <form class="assistant-input-box" id="assistant-form">
+              <input type="text" id="assistant-input" placeholder="Ask a question grounded in repository source code...">
+              <button type="submit" class="btn btn-primary">Ask Assistant</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Panel 5: Tests & Verification -->
+        <div id="panel-tests" class="workspace-panel" style="display: none;">
+          <div class="content-header">
+            <div>
+              <h1>Tests & Verification</h1>
+              <div class="content-subtitle">Execution results of extracted documentation snippets running in isolated subprocesses.</div>
+            </div>
+            <button class="btn btn-secondary" onclick="fetchRuns().then(renderVerificationRuns)">
+              &#8635; Refresh Results
+            </button>
+          </div>
+
+          <div class="card" style="padding: 0; overflow: hidden;">
+            <table class="verification-table">
+              <thead>
+                <tr>
+                  <th>Snippet ID</th>
+                  <th>Document</th>
+                  <th>Status</th>
+                  <th>Duration</th>
+                  <th>Terminal Output / Traceback</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="runs-table-body">
+                <!-- Runs injected via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Panel 6: GitHub & Pull Requests -->
+        <div id="panel-github" class="workspace-panel" style="display: none;">
+          <div class="content-header">
+            <div>
+              <h1>GitHub & Pull Requests</h1>
+              <div class="content-subtitle">Reviewable documentation synchronization proposals and unified git diffs.</div>
+            </div>
+            <button class="btn btn-primary" onclick="triggerPipelineRun()">
+              Stage New Synchronization PR
+            </button>
+          </div>
+
+          <div style="margin-bottom: 16px; padding: 12px 16px; background: var(--bg-surface); border: 1px solid var(--border-light); border-radius: var(--radius-sm); font-size: 12px; display: flex; align-items: center; justify-content: space-between;">
+            <div>
+              <strong>Mode: Local Verification & PR Simulation</strong>
+              <div style="color: var(--text-muted); margin-top: 2px;">
+                All unified diffs and PR branches are computed and staged locally. To open live PRs on GitHub, configure a Personal Access Token in Settings.
+              </div>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="switchTab('settings')">Configure GitHub</button>
+          </div>
+
+          <div id="pr-list-container">
+            <!-- Staged PRs injected via JS -->
+          </div>
+        </div>
+
+        <!-- Panel 7: Activity Log -->
+        <div id="panel-activity" class="workspace-panel" style="display: none;">
+          <div class="content-header">
+            <div>
+              <h1>Activity Audit Log</h1>
+              <div class="content-subtitle">Chronological record of AST parses, document generations, snippet verifications, and PRs.</div>
+            </div>
+            <button class="btn btn-secondary" onclick="fetchActivities().then(renderActivities)">
+              &#8635; Refresh Audit Trail
+            </button>
+          </div>
+
+          <div class="card">
+            <div id="activity-list-container">
+              <!-- Activities injected via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 8: Settings -->
+        <div id="panel-settings" class="workspace-panel" style="display: none;">
+          <div class="content-header">
+            <div>
+              <h1>Workspace Settings & Engine Configuration</h1>
+              <div class="content-subtitle">Configure AI model providers, execution timeouts, and repository parameters.</div>
+            </div>
+          </div>
+
+          <div class="card" style="max-width: 680px;">
+            <form id="settings-form" style="display: flex; flex-direction: column; gap: 16px;">
+              <div>
+                <label style="display: block; font-weight: 600; font-size: 13px; margin-bottom: 6px;">
+                  AI Documentation Provider
+                </label>
+                <select id="settings-provider" style="width: 100%;">
+                  <option value="offline_engine">HERMES Deterministic AST Engine (Offline Mode - No API Key Needed)</option>
+                  <option value="gemini">Google Gemini 1.5 Flash (via API Key)</option>
+                  <option value="openai">OpenAI GPT-4o-mini (via API Key)</option>
+                </select>
+                <div style="font-size: 11px; color: var(--text-faint); margin-top: 4px;">
+                  HERMES works completely offline out of the box using built-in AST extraction and source-grounded templates.
+                </div>
+              </div>
+
+              <div>
+                <label style="display: block; font-weight: 600; font-size: 13px; margin-bottom: 6px;">
+                  LLM API Key (Optional)
+                </label>
+                <input type="password" id="settings-api-key" placeholder="Enter API Key (persisted securely in local SQLite)" style="width: 100%;">
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div>
+                  <label style="display: block; font-weight: 600; font-size: 13px; margin-bottom: 6px;">
+                    Sandbox Timeout (seconds)
+                  </label>
+                  <input type="number" id="settings-timeout" value="5.0" step="0.5" min="1" max="30" style="width: 100%;">
+                </div>
+                <div>
+                  <label style="display: block; font-weight: 600; font-size: 13px; margin-bottom: 6px;">
+                    Max Correction Attempts
+                  </label>
+                  <input type="number" id="settings-max-attempts" value="2" min="1" max="5" style="width: 100%;">
+                </div>
+              </div>
+
+              <div>
+                <label style="display: block; font-weight: 600; font-size: 13px; margin-bottom: 6px;">
+                  GitHub Repository
+                </label>
+                <input type="text" id="settings-github-repo" value="hermes-ai/data-pipeline-core" style="width: 100%;">
+              </div>
+
+              <div>
+                <label style="display: block; font-weight: 600; font-size: 13px; margin-bottom: 6px;">
+                  GitHub Personal Access Token (Optional)
+                </label>
+                <input type="password" id="settings-github-token" placeholder="ghp_... for real GitHub PR creation" style="width: 100%;">
+              </div>
+
+              <div style="margin-top: 8px;">
+                <button type="submit" class="btn btn-primary">Save Settings</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
